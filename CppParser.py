@@ -412,5 +412,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         sys.exit(main())
     else:
-        from ui import run_gui
+        from main import run_gui
         run_gui()
