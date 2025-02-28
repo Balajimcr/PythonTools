@@ -107,14 +107,16 @@ class CppReorderGUI:
             self.log(f"Selected header file: {filename}")
             self.save_config()
 
+            # Set output folder to the same directory as the script with "Refactored" subfolder
+            source_dir = os.path.dirname(os.path.abspath(filename))
+            self.output_folder.set(os.path.join(source_dir, "Refactored"))
+            self.log(f"Set output folder to Refactored: {os.path.join(source_dir, 'Refactored')}")
+            
             # Try to automatically find the corresponding cpp file
             cpp_path = self._find_corresponding_cpp(filename)
             if cpp_path and os.path.isfile(cpp_path):
                 self.cpp_file.set(cpp_path)
                 self.log(f"Auto-detected Source Cpp file: {cpp_path}")
-                # Set output folder to cpp file dir
-                self.output_folder.set(os.path.dirname(cpp_path))
-                self.log(f"Set output folder to source cpp directory: {os.path.dirname(cpp_path)}")
                 self.save_config()
 
     def browse_cpp(self):
